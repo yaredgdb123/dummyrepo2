@@ -1,4 +1,4 @@
-module github.com/yaredgdb123/dummyrepo2/teyake
+module teyake
 
 go 1.13
 
