@@ -1,0 +1,64 @@
+{{define "admin.users.new.layout"}}
+    {{template "admin.navbar.layout" .}}
+    {{template "admin.users.new.content" .}}
+    {{template "admin.footer.layout" .}}
+{{end}}
+
+{{define "admin.users.new.content"}}
+
+    <div class="row h-100 justify-content-center align-items-center" style="height: 100vh !important;">
+        <div class="col-4"></div>
+        <div class="p-4 col-4 bg-white form_container">
+            <form class="form_admin" method="POST" action="/admin/users/new" id="form_admin">
+
+                <input type="hidden" name="csfrKey" value="{{ .CSRF }}"/>
+                <input class="form-control" type='hidden' name='userid' value='{{ .Values.Get "userid" }}'/>
+                <div class="form-group">
+                    <label for='fullname' class='col-form-label'>Full Name</label>
+                    {{with .VErrors.Get "fullname"}}
+                        <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input type='text' class='form-control' name='fullname' id='fullname'
+                           value='{{ .Values.Get "fullname" }}'
+                           required autofocus placeholder='Full Name'>
+                </div>
+                <div class="form-group">
+                    <label for='email' class='col-form-label'>Email</label>
+                    {{with .VErrors.Get "email"}}
+                        <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input type='email' class='form-control' name='email' id='email' value='{{ .Values.Get "email" }}'
+                           required
+                           placeholder='Email Address'>
+                </div>
+
+                <div class="form-group">
+                    <label for='email' class='col-form-label'>Password</label>
+                    {{with .VErrors.Get "password"}}
+                        <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input type='password' class='form-control' name='password' id='password'
+                           value='{{ .Values.Get "password" }}' required
+                           placeholder='Password'>
+                </div>
+
+                <div class="form-group">
+                    <label for='role' class='col-form-label'>Role</label>
+                    {{with .VErrors.Get "role"}}
+                        <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <select name='role' id='role' class='form-control' required>
+                        <option value='' disabled hidden selected>Choose Role</option>
+                        {{ range .Roles }}
+                            <option value='{{ .ID }}'> {{ .Name }}</option>
+                        {{ end }}
+                    </select>
+                </div>
+                <button type='submit' class='btn btn-primary float-right'>Create User</button>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+
+{{end}}

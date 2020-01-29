@@ -1,0 +1,80 @@
+{{ define "question.detail.layout" }}
+    {{ template "navbar.layout" }}
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                {{with .Question}}
+                    <h1 class="mt-4">{{.Title}}</h1>
+
+                    <p class="lead">
+                        by
+                        <span>{{.User.FullName}}</span>
+                    </p>
+
+
+
+                    {{with .Image}}
+                        {{if ne . ""}}
+                            <hr>
+
+                            <img class="img-fluid rounded" src="../assets/img/{{ . }}" alt="Image">
+                        {{end}}
+                    {{end}}
+
+                    <hr>
+                    <p class="lead">{{.Description}}</p>
+
+                    <hr>
+                    <p>{{readableDate .CreatedAt}}</p>
+                {{end}}
+                <div class="card my-4">
+                    <h5 class="card-header">Leave an Answer:</h5>
+                    <div class="card-body">
+                        <form action="/question?id={{.Question.ID}}" method="post">
+                            <input style="visibility: hidden" type="text" name="csfrKey" value={{.FormInput.CSFR}}>
+                            <div class="form-group">
+                                <textarea name="answer" class="form-control" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                {{range .Question.Answers}}
+                    <div class="media mb-4">
+                        <div class="media-body">
+                            {{.User.FullName}}
+                            <h5 class="mt-0">{{.Message}}</h5>
+                            <p>{{readableDate .CreatedAt}}</p>
+                        </div>
+                        <form method="POST" action="/question/upvote" class="form-inline mt-2 mt-md-0">
+                            <button type="submit" class="btn btn-primary">
+                                <span>
+                                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <g id="upvote" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5"
+                                           stroke="#ffffff" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+                                            <polygon points="12 4 3 15 9 15 9 20 15 20 15 15 21 15"></polygon>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <div class="" style="display: inline-flex!important;
+                                                     align-items: baseline!important;
+                                                     justify-content: center!important;">
+                                    <span class="" id="__w2_w3VCCkFS28_label">Upvote</span>
+                                    <span class="" aria-hidden="true" id="">
+                                            <span class="" name="votes">2</span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </button>
+
+                        </form>
+                    </div>
+                {{end}}
+
+            </div>
+
+        </div>
+    </div>
+{{end}}

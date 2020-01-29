@@ -1,0 +1,28 @@
+{{define "question.layout"}}
+    <a  href="/question?id={{.ID}}" style="color:inherit;text-decoration: none">
+        <div class="w-100 col-lg-12">
+            <div id="question_layout_css" class="card mt-3" style="border-radius: 10px;">
+                {{/*                            <img class="card-img-top" src="http://placehold.it/1051x180" alt="Card image cap">*/}}
+                {{with .Image}}
+                    {{if ne . ""}}
+                        <img style="border-radius: .25rem .25rem 0rem 0rem !important;" class="w-100 h-auto img-fluid" src="../assets/img/{{.}}" alt="Image">
+                    {{end}}
+                {{end}}
+                <div class="card-body rounded">
+                    <h3 class="card-text">{{.Title}}</h3>
+                    <form method="POST" action="/question/user">
+                        <input type="hidden" name="user_id" value={{.User.ID}}>
+                        {{/*<input type="hidden" name="csrf" value="{{ .CSRF }}"/>*/}}
+                        <button class="btn btn-outline-primary text-primary my-2 my-sm-0"  type="submit">by {{.User.FullName}}</button>
+                    </form>
+                    <!--<a href="/questions/user?id={{.User.ID}}"><p class="card-text">by {{.User.FullName}}</p></a>-->
+                    <p class="card-text"><small class="text-muted">{{.Description}}</small></p>
+                    <p class="card-text"><small class="text-muted">{{readableDate .CreatedAt}}</small></p>
+                    <p class="card-text"><small class="text-muted">{{len .Answers}} Answers</small></p>
+
+                </div>
+            </div>
+        </div>
+    </a>
+{{end}}
+

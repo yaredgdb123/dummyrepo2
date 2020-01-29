@@ -1,0 +1,60 @@
+{{ define "login.layout" }}
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="../assets/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="../assets/css/bootstrap-grid.min.css"/>
+        <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="../assets/css/login.css"/>
+
+
+    </head>
+
+    <body>
+    <div class="container">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <img class="" src="/../assets/img/Logo.png" alt="" style="display: block; margin: auto;">
+                        <form class="form-signin" action="/login" method="post">
+                            <input style="visibility: hidden" type="text" name="csfrKey" value={{.CSFR}}>
+                            <div class="form-label-group mt-5">
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                                       required autofocus name="email" value={{.Values.Get "email"}}>
+                                <label for="inputEmail">Email address <span
+                                            style="color: red">{{.VErrors.Get "generic"}}</span></label>
+
+                            </div>
+
+                            <br>
+
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                                       required name="password">
+                                <label for="inputPassword">Password</label>
+                            </div>
+
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in
+                            </button>
+
+                        </form>
+                    </div>
+                    <p class="text-center align-bottom text-primary"><a href="/signup"
+                                                                        style="text-decoration: none; color: inherit;">SIGN
+                            UP</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    </body>
+
+    </html>
+{{end}}

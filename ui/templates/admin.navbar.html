@@ -1,0 +1,79 @@
+{{ define "admin.navbar.layout" }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Tiyake.com | Admin</title>
+
+
+    <link href="/../assets/css/bootstrap.min.css"  rel="stylesheet">
+    <link href="/../assets/css/bootstrap-grid.min.css" rel="stylesheet">
+
+</head>
+<style>
+    .bg-light {
+        background-color: #eeeeee !important;
+    }
+
+    th {cursor: pointer}
+
+    .form-control {
+        padding: 20px;
+        margin: 10px;
+        display: block;
+        width: 100%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .drpdwn_item {
+        background-color: white !important;
+        color: #007bff !important;
+    }
+
+    .form_container {
+        border-radius: 30px;
+    }
+
+    .form-group {
+        padding: 5px;
+        margin: 5px;
+    }
+</style>
+<body class="bg-light">
+
+<div class="d-flex" id="wrapper" style="height: 100vw!important;">
+
+    <div class="bg-light border-right mr-3 " id="sidebar-wrapper">
+        <div class="list-group list-group-flush">
+            <a href="/admin" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+            <a href="/admin/users" class="list-group-item list-group-item-action bg-light">Users</a>
+            <a href="/admin/questions" class="list-group-item list-group-item-action bg-light">Questions</a>
+            <a href="/admin/answers" class="list-group-item list-group-item-action bg-light">Answers</a>
+            <a href="/admin/categories" class="list-group-item list-group-item-action bg-light">Categories</a>
+
+        </div>
+    </div>
+
+    <div id="page-content-wrapper" style="width: 100vw!important;">
+        {{/*end navbar*/}}
+
+{{end}}
+
+
+
